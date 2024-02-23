@@ -10,6 +10,7 @@ package assignment_1;
 // 1 2 4 7 11 16 22
 // -3 -1 2 6 11 17 24
 // 1 1 2 3 5 8 13 21
+// 0 1 2 3 6 11 20 37
 
 
 
@@ -20,6 +21,7 @@ public class NumberSequence{
        sequenceC();
        sequenceD();
        sequenceE();
+       sequenceF();
        
     }
 
@@ -89,6 +91,29 @@ public class NumberSequence{
         }
 
         System.out.println();
+    }
+
+    // 0 1 2 3 6 11 20 37
+
+    public static void sequenceF(){
+        int a = 0;
+        int b = 1;
+        int c = 2;
+        int n = 7;
+
+        System.out.print(a + " " + b + " " + c + " ");
+    
+        for(int i = 2; i < n; i++){
+            int nextNumber = a + b + c;
+
+            System.out.print(nextNumber + " ");
+            
+            a = b;
+            b = c;
+            c = nextNumber;
+        }
+
+
     }
 
    
