@@ -1,17 +1,16 @@
-// SameFootTriangle class
 public class SameFootTriangle extends Triangle {
     private Double height;
 
     public SameFootTriangle(String name, Double side1, Double side2, Double height) {
-        super(name, side1, side2, Math.sqrt(side1 * side1 + side2 * side2)); // Assuming side3 is the hypotenuse
+        super(name, side1, side2, Math.sqrt(side1 * side1 + side2 * side2)); 
         this.height = height;
-        calculateArea(); // Call calculateArea after height is initialized
+        calculateArea();
     }
 
     @Override
     public void calculateArea() {
         if (height != null) {
-            super.area = 0.5 * side1 * height; // Area for SameFootTriangle
+            super.area = 0.5 * side1 * height; 
         } else {
             System.out.println("Height is not initialized.");
         }
