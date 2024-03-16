@@ -6,7 +6,6 @@ public class App{
         Triangle DEF = new SameSideTriangle("BCD", 3.0, 4.0);
         Triangle EFG = new SameFootTriangle("CDE", 3.0, 4.0, 5.0);
 
-
         
     
         ABC.getInfo();
@@ -14,6 +13,8 @@ public class App{
         CDE.getInfo();
         DEF.getInfo();
         EFG.getInfo();
+
+       
         
     }
     
