@@ -15,4 +15,8 @@ public class Circle implements Shape {
         return 2 * Math.PI * radius;
     }
 
+    public void getInfo(){
+        System.out.println("Area: " + area());
+        System.out.println("Perimeter: " + perimeter());
+    }
 }

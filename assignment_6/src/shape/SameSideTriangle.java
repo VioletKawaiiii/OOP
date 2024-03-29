@@ -14,4 +14,9 @@ public class SameSideTriangle extends Triangle {
     public double perimeter() {
         return side1 + side2 + side3;
     }
+    
+    public void getInfo(){
+        System.out.println("Area: " + area());
+        System.out.println("Perimeter: " + perimeter());
+    }
 }

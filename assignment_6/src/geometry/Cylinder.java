@@ -19,4 +19,9 @@ public class Cylinder implements Geometry {
         return new Circle(radius).area() * height;
     }
 
+    public void getInfo() {
+        System.out.println("Volume: " + volume());
+        System.out.println("Base Area: " + baseArea());
+    }
+
 }

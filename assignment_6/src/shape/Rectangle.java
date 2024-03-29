@@ -17,6 +17,9 @@ public class Rectangle implements Shape {
         return 2 * (length + width);
     }
 
-    
+    public void getInfo(){
+        System.out.println("Area: " + area());
+        System.out.println("Perimeter: " + perimeter());
+    }
 
 }

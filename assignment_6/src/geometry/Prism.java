@@ -1,4 +1,3 @@
-// Prism.java
 package geometry;
 
 import shape.Rectangle;
@@ -20,5 +19,10 @@ public class Prism implements Geometry {
     
     public double baseArea() {
         return new Rectangle(length, width).area();
+    }
+
+    public void getInfo(){
+        System.out.println("Volume: " + volume());
+        System.out.println("Base Area: " + baseArea());
     }
 }

@@ -1,4 +1,3 @@
-// Geometry.java
 package geometry;
 
 

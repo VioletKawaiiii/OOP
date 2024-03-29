@@ -11,12 +11,18 @@ public class Cube implements Geometry {
     }
 
     
+    public double volume() {
+        return Math.pow(side, 3);
+    }
+
     public double baseArea() {
         return new Square(side).area();
     }
 
-    public double volume() {
-        return Math.pow(side, 3);
+
+    public void getInfo() {
+        System.out.println("Volume: " + volume());
+        System.out.println("Base Area: " + baseArea());
     }
 
 }
