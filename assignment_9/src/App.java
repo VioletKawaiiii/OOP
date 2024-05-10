@@ -1,52 +1,63 @@
 public class App {
     
     public static void main(String[] args) throws Exception {
-        solution1();
+        String input = "NUGRAHA";
+
+        solution1(input);
         System.out.println();
-        solution2();
+        solution2(input);
         System.out.println();
-        solution3();
+        solution3(input);
     }
     
-    public static void solution1(){
-       String input = "NUGRAHA";
+    public static void solution1(String input){
        int length = input.length();
        for(int i = 0; i < length ; i++){
         for(int j = 0; j < length; j++){
-            if(j >= length - i){
-                System.out.print("* ");
-            }else{
-                System.out.print(input.charAt(j) + " ");
-            }
+
+            String output = (j >= length - i) ? "* " : input.charAt(j) + " "; 
+            System.out.print(output);
+
         }
 
         System.out.println();
        }
     }
 
-    public static void solution2(){
-        String input = "NUGRAHA";
+    public static void solution2(String input){
         int length = input.length();
         for(int i = 0; i < length ; i++){
          for(int j = 0; j < length; j++){
-             if(j == i){
-                 System.out.print(input.charAt(j) + " ");
-             }else{
-                 System.out.print("* ");
-             }
+
+            String output = (j == i) ? input.charAt(j) + " ": "* ";
+            System.out.print(output);
+            
          }
  
          System.out.println();
         }
      }
 
-     public static void solution3(){
-        String input = "NUGRAHA";
+     public static void solution3(String input){
         int length = input.length();
+        int middle = length / 2;
+
         for(int i = 0; i < length ; i++){
          for(int j = 0; j < length; j++){
-             
-           System.out.print(input.charAt(i) + " ");
+            
+            String output;
+
+            if (i == middle) {
+                output = input.charAt(j) + "  ";
+            } else if (j == middle) {
+                output = input.charAt(i) + "  ";
+            } else if (i == j && i == middle) {
+                output = input + "  ";
+            } else {
+                output = "*  ";
+            }
+
+            System.out.print(output);
           
          }
  
