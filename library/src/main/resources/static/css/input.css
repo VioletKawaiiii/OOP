@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', 'sans-serif';
+}
+form #form-input {
+  @apply w-full outline-none p-2 text-[11px] border-[2px] border-black mb-8;
+}
+
+.member-list,
+.book-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  background: white;
+  border-radius: 3px;
+  padding: 15px;
+  border: 2px solid black;
+}
+
+.member-list div,
+.book-list div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.book-list div:nth-child(5) {
+  align-items: normal;
+}
+
+.member-list div span,
+.book-list div span {
+  font-weight: bold;
+}
+
+.member-list div p,
+.book-list div p {
+  font-size: 13px;
+}

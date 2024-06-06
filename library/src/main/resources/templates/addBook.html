@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link href="/css/input.css" rel="stylesheet" />
+    <link href="/css/output.css" rel="stylesheet" />
+
+    <title>Library</title>
+  </head>
+  <body>
+    <div id="container" class="relative flex items-center flex-col w-full h-full py-10 px-40">
+      <nav id="navbar" class="absolute flex justify-center w-[40%] h-[60px] top-[3rem] border-[2px] border-black rounded-full text-[11px] font-bold">
+        <ul id="menu-list" class="w-full flex justify-evenly items-center uppercase text-[12px] font-bold">
+          <li class="menu-link"><a href="/book-list">Book list</a></li>
+          <li class="menu-link"><a href="/member-list">Member list</a></li>
+          <li class="menu-link"><a href="/add-book">Book form</a></li>
+          <li class="menu-link"><a href="/member-registration">Member form</a></li>
+        </ul>
+      </nav>
+
+      <div id="book-form-page" class="w-[80%] h-full my-[100px]">
+        <h1 class="text-[20px] font-bold tracking-[1px] text-center uppercase mb-5">add book</h1>
+
+        <form id="book-form" class="relative w-full border-[2px] border-black rounded-md h-auto p-16">
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Title:</label>
+            <input type="text" id="form-input" name="title" />
+          </div>
+
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Author:</label>
+            <input type="email" id="form-input" name="author" />
+          </div>
+
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Isbn:</label>
+            <input type="text" id="form-input" name="isbn" />
+          </div>
+
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Category:</label>
+            <input type="text" id="form-input" name="category" />
+          </div>
+
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Description:</label>
+            <textarea type="text" id="form-input" style="height: 150px" name="description"></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1 font-bold text-[12px]">Quantity:</label>
+            <input type="text" id="form-input" name="qty" />
+          </div>
+
+          <div>
+            <input id="add-button" class="button w-full bg-black border-[2px] mt-4 text-[12px] border-black text-white p-2.5 cursor-pointer hover:bg-white hover:text-black transition-[1s]" type="button" value="Add Book" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+      // Showing notification
+      const showToast = (message, background) => {
+        Toastify({
+          text: message,
+          duration: 2500,
+          close: true,
+          gravity: 'top',
+          position: 'center',
+          style: {
+            background: background,
+          },
+        }).showToast();
+      };
+
+      const submitBook = async (e) => {
+        e.preventDefault();
+
+        const bookForm = document.querySelector('#book-form');
+
+        const bookObj = {
+          title: document.querySelector("#form-input[name='title']").value,
+          author: document.querySelector("#form-input[name='author']").value,
+          isbn: document.querySelector("#form-input[name='isbn']").value,
+          category: document.querySelector("#form-input[name='category']").value,
+          description: document.querySelector("#form-input[name='description']").value,
+          qty: parseInt(document.querySelector("#form-input[name='qty']").value),
+        };
+
+        try {
+          const res = await fetch('/books', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookObj),
+          });
+
+          if (!res.ok) {
+            throw new Error('Network response was not ok ' + res.statusText);
+          }
+
+          const data = await res.json();
+          bookForm.reset();
+
+          console.log(data);
+
+          showToast('add book successfully', 'linear-gradient(to right, #00b09b, #96c93d)');
+        } catch (error) {
+          console.log('Error:', error);
+          showToast('Failed to add book', 'red');
+        }
+      };
+
+      document.querySelector('#add-button').addEventListener('click', submitBook);
+    </script>
+  </body>
+</html>

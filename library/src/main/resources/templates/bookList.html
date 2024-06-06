@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link href="/css/input.css" rel="stylesheet" />
+    <link href="/css/output.css" rel="stylesheet" />
+    <title>Library</title>
+  </head>
+  <body>
+    <div id="container" class="flex items-center flex-col relative w-full h-screen py-10" style="padding-left: 100px; padding-right: 100px">
+      <nav id="navbar" class="absolute flex justify-center w-[40%] h-[60px] top-[3rem] border-[2px] bg-white z-50 border-black rounded-full text-[11px] font-bold">
+        <ul id="menu-list" class="w-full flex justify-evenly items-center uppercase text-[12px] font-bold">
+          <li class="menu-link"><a href="/book-list">Book list</a></li>
+          <li class="menu-link"><a href="/member-list">Member list</a></li>
+          <li class="menu-link"><a href="/add-book">Book form</a></li>
+          <li class="menu-link"><a href="/member-registration">Member form</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex flex-col w-full h-full my-[100px]">
+        <h1 class="text-center font-bold uppercase text-[20px]" style="margin-bottom: 30px">Book List</h1>
+
+        <div class="book-container" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px"></div>
+      </div>
+    </div>
+
+    <script>
+      const fetchBook = async () => {
+        try {
+          const res = await fetch('/books');
+          const data = await res.json();
+          getBook(data);
+        } catch (error) {
+          console.log('Error: ', error);
+        }
+      };
+
+      const getBook = (book) => {
+        const bookContainer = document.querySelector('.book-container');
+
+        book.forEach((book) => {
+          const bookList = `
+            <div class="book-list">
+              <div>
+                <span>Title: </span>
+                <p>${book.title}</p>
+              </div>
+
+              <div>
+                <span>Author: </span>
+                <p>${book.author}</p>
+              </div>
+
+              <div>
+                <span>Isbn: </span>
+                <p>${book.isbn}</p>
+              </div>
+
+              <div>
+                <span>Category: </span>
+                <p>${book.category}</p>
+              </div>
+
+              <div>
+                <span>Description: </span>
+                <p>${book.description}</p>
+              </div>
+
+              <div>
+                <span>Quantity: </span>
+                <p>${book.qty}</p>
+              </div>
+              
+            </div>
+          `;
+
+          bookContainer.innerHTML += bookList;
+        });
+      };
+
+      fetchBook();
+    </script>
+  </body>
+</html>
